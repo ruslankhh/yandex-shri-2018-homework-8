@@ -11,17 +11,13 @@ const LabelContainer = (props = {}) => {
     content: [Label({ content: '...', ...props })]
   });
 
-  const state = store.getState();
-
-  const handleChange = () => {
-    const newState = store.getState();
-
-    if (state.label !== newState.label) {
-      render(Label({ content: newState.label, ...props }), view);
+  const labelHandler = (oldState, state) => {
+    if (oldState.label !== state.label) {
+      render(Label({ content: state.label, ...props }), view);
     }
   };
 
-  store.subscribe(handleChange);
+  store.subscribe(labelHandler);
 
   return view;
 };
