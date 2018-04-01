@@ -1,10 +1,10 @@
-import bem from './../../utils/createBEM';
+import { createElement } from './../../utils/bem';
 import './NavItem.css';
 
 const NavItem = (props = {}) => {
   const block = 'NavItem';
 
-  return bem({
+  return createElement({
     block,
     tag: 'li',
     content: { block, tag: 'a', elem: 'link', ...props }

@@ -1,11 +1,11 @@
-import bem from './../../utils/createBEM';
+import { createElement } from './../../utils/bem';
 import Nav from './../../blocks/Nav/Nav';
 import './Header.css';
 
 const Header = (props = {}) => {
   const block = 'Header';
 
-  return bem({
+  return createElement({
     block,
     content: [
       {

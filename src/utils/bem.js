@@ -1,5 +1,4 @@
-const createBEM = ({ block, tag = 'div', elem, mods, mix, attrs, content }) => {
-  const bem = createBEM;
+const createElement = ({ block, tag = 'div', elem, mods, mix, attrs, content }) => {
   const view = document.createElement(tag);
   let classList = [];
   let prefix;
@@ -30,28 +29,32 @@ const createBEM = ({ block, tag = 'div', elem, mods, mix, attrs, content }) => {
   }
 
   if (content) {
-    if (content instanceof Array) {
-      view.append(
-        ...content.map(obj => {
-          if (obj instanceof Element) {
-            return obj;
-          } else if (obj instanceof Function) {
-            return obj();
-          } else if (obj instanceof Object) {
-            return bem(obj);
-          }
-        })
-      );
-    } else if (content instanceof Function) {
-      view.append(content());
-    } else if (content instanceof Object) {
-      view.append(bem(content));
-    } else {
-      view.append(content);
-    }
+    render(content, view);
   }
 
   return view;
 };
 
-export default createBEM;
+const render = (value, root) => {
+  if (value instanceof Array) {
+    root.append(
+      ...value.map(obj => {
+        if (obj instanceof Function) {
+          return obj();
+        } else if (obj instanceof Object) {
+          return createElement(obj);
+        } else {
+          return obj;
+        }
+      })
+    );
+  } else if (value instanceof Function) {
+    root.append(value());
+  } else if (value instanceof Object) {
+    root.append(createElement(value));
+  } else {
+    root.append(value);
+  }
+};
+
+export default { createElement, render };

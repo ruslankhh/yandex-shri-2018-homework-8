@@ -1,4 +1,4 @@
-import bem from './../../utils/createBEM';
+import { createElement } from './../../utils/bem';
 import ViewStub from './../ViewStub/ViewStub';
 import Log from './../Log/Log';
 import './Main.css';
@@ -6,7 +6,7 @@ import './Main.css';
 const Main = (props = {}) => {
   const block = 'Main';
 
-  const view = bem({
+  const view = createElement({
     block,
     tag: 'main',
     content: [

@@ -1,7 +1,6 @@
+import { render } from './utils/bem';
 import App from './blocks/App/App';
 
 import './styles/styles.post.css';
 
-const root = document.getElementById('root');
-
-root.append(App());
+render(App, document.getElementById('root'));

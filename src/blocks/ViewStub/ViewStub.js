@@ -1,11 +1,11 @@
-import bem from './../../utils/createBEM';
+import { createElement } from './../../utils/bem';
 import './ViewStub.css';
 
 const ViewStub = (props = {}) => {
   const { label = '...' } = props;
   const block = 'ViewStub';
 
-  return bem({
+  return createElement({
     block,
     content: [
       { block, tag: 'h3', elem: 'title', content: 'Ввод' },

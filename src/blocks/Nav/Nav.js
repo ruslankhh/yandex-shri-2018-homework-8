@@ -1,4 +1,4 @@
-import bem from './../../utils/createBEM';
+import { createElement } from './../../utils/bem';
 import NavItem from './../../blocks/NavItem/NavItem';
 import './Nav.css';
 
@@ -11,7 +11,7 @@ const Nav = (props = {}) => {
     { mods: { disabled: true }, attr: { href: '/mvvm' }, content: 'MVVM' }
   ];
 
-  return bem({
+  return createElement({
     block,
     content: [
       {
