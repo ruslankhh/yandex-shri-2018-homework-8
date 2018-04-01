@@ -15,30 +15,32 @@
           <a class="nav-item__link nav-item__link--active" href="/">Flux</a>
         </li>
         <li class="nav-item">
-          <a class="nav-item__link nav-item__link--active" href="/mvp">MVP</a>
+          <span class="nav-item__link nav-item__link--disabled" href="/mvp">MVP</span>
         </li>
         <li class="nav-item">
-          <a class="nav-item__link nav-item__link--active" href="/mvc">MVC</a>
+          <span class="nav-item__link nav-item__link--disabled" href="/mvc">MVC</span>
         </li>
         <li class="nav-item">
-          <a class="nav-item__link nav-item__link--active" href="/mvvm">MVVM</a>
+          <span class="nav-item__link nav-item__link--disabled" href="/mvvm">MVVM</span>
         </li>
       </ul>
     </nav>
   </header>
-  <main class="content flex">
-    <div class="ViewStub">
-      <h3>Ввод</h3>
-      <div class="ViewStub__inputContainer">
-        <input class="ViewStub__input"/>
-        <button class="ViewStub__button">Отправить</button>
+  <main class="content">
+    <div class="container flex">
+      <div class="ViewStub">
+        <h3>Ввод</h3>
+        <div class="ViewStub__inputContainer">
+          <input class="ViewStub__input"/>
+          <button class="ViewStub__button">Отправить</button>
+        </div>
+        <h3>Ответ сервера</h3>
+        <p class="ViewStub__label">...</p>
       </div>
-      <h3>Ответ сервера</h3>
-      <p class="ViewStub__label">...</p>
-    </div>
-    <div class="Log">
-      <h3 class="Log__title">Лог</h3>
-      <pre class="Log__output">...</pre>
+      <div class="Log">
+        <h3 class="Log__title">Лог</h3>
+        <pre class="Log__output">...</pre>
+      </div>
     </div>
   </main>
 </body>

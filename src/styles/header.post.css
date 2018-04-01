@@ -18,6 +18,7 @@
   &__nav {
     font-size: 14px;
     margin-bottom: 2rem;
+    cursor: default;
 
     & ul {
       list-style-type: none;
@@ -33,19 +34,17 @@
     & ul li:last-child {
       margin-right: 0;
     }
+  }
+}
 
-    & a {
-      color: #666;
-    }
+.nav-item {
+  &__link {
+    color: #666;
   }
 
-  &__nav-tree {
-    min-height: 1.875em;
-  }
-
-  &__branch {
-    display: inline-block;
-    margin-right: 0.5em;
-    margin-bottom: 0.5em;
+  &__link--disabled {
+    pointer-events: none;
+    cursor: default;
+    text-decoration: line-through;
   }
 }
