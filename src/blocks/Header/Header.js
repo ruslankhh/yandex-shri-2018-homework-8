@@ -5,8 +5,9 @@ import './Header.css';
 const Header = (props = {}) => {
   const block = 'Header';
 
-  return createElement({
+  const view = createElement({
     block,
+    tag: 'header',
     content: [
       {
         block,
@@ -18,6 +19,8 @@ const Header = (props = {}) => {
       Nav
     ]
   });
+
+  return view;
 };
 
 export default Header;

@@ -5,7 +5,7 @@ const ViewStub = (props = {}) => {
   const { label = '...' } = props;
   const block = 'ViewStub';
 
-  return createElement({
+  const view = createElement({
     block,
     content: [
       { block, tag: 'h3', elem: 'title', content: 'Ввод' },
@@ -21,6 +21,8 @@ const ViewStub = (props = {}) => {
       { block, elem: 'label', content: label }
     ]
   });
+
+  return view;
 };
 
 export default ViewStub;

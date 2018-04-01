@@ -5,10 +5,12 @@ import Main from './../Main/Main';
 const App = (props = {}) => {
   const block = 'App';
 
-  return createElement({
+  const view = createElement({
     block,
     content: [Header, Main]
   });
+
+  return view;
 };
 
 export default App;

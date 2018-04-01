@@ -20,7 +20,11 @@ const createElement = ({ block, tag = 'div', elem, mods, mix, attrs, content }) 
     classList = [...classList, ...[].concat(mix)];
   }
 
-  view.className = classList.join(' ');
+  classList = classList.filter(c => !!c);
+
+  if (classList.length !== 0) {
+    view.className = classList.join(' ');
+  }
 
   if (attrs) {
     Object.keys(attrs).forEach(name => {
@@ -41,6 +45,8 @@ const render = (value, root) => {
       ...value.map(obj => {
         if (obj instanceof Function) {
           return obj();
+        } else if (obj instanceof Element) {
+          return obj;
         } else if (obj instanceof Object) {
           return createElement(obj);
         } else {
@@ -50,6 +56,8 @@ const render = (value, root) => {
     );
   } else if (value instanceof Function) {
     root.append(value());
+  } else if (value instanceof Element) {
+    root.append(value);
   } else if (value instanceof Object) {
     root.append(createElement(value));
   } else {
