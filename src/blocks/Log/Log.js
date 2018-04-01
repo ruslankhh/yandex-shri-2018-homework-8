@@ -10,7 +10,8 @@ const Log = (props = {}) => {
     content: [
       { block, tag: 'h3', elem: 'title', content: 'Лог' },
       { block, tag: 'pre', elem: 'output', content: output }
-    ]
+    ],
+    ...props
   });
 
   return view;

@@ -7,7 +7,8 @@ const NavItem = (props = {}) => {
   const view = createElement({
     block,
     tag: 'li',
-    content: { block, tag: 'a', elem: 'link', ...props }
+    content: { block, tag: 'a', elem: 'link', ...props },
+    ...props
   });
 
   return view;

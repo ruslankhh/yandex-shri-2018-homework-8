@@ -7,7 +7,8 @@ const App = (props = {}) => {
 
   const view = createElement({
     block,
-    content: [Header, Main]
+    content: [Header, Main],
+    ...props
   });
 
   return view;

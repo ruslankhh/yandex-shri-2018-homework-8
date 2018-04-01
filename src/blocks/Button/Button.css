@@ -1,0 +1,18 @@
+.Button {
+  cursor: pointer;
+  background-color: #ddd;
+  padding: 3px 15px;
+  line-height: 28px;
+  font-size: inherit;
+  box-shadow: none;
+  border: none;
+  outline: none;
+
+  &:hover {
+    background-color: #ccc;
+  }
+
+  &:active {
+    background-color: #999;
+  }
+}

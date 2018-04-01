@@ -1,8 +1,10 @@
 import { createElement } from './../../utils/bem';
+import Button from './../Button/Button';
+import Input from './../Input/Input';
+import Label from './../Label/Label';
 import './ViewStub.css';
 
 const ViewStub = (props = {}) => {
-  const { label = '...' } = props;
   const block = 'ViewStub';
 
   const view = createElement({
@@ -13,13 +15,14 @@ const ViewStub = (props = {}) => {
         block,
         elem: 'inputContainer',
         content: [
-          { block, tag: 'input', elem: 'input' },
-          { block, tag: 'button', elem: 'button', content: 'Отправить' }
+          Input({ mix: { block, elem: 'input' } }),
+          Button({ mix: { block, elem: 'button' }, content: 'Отправить' })
         ]
       },
       { block, tag: 'h3', elem: 'title-2', content: 'Ответ сервера' },
-      { block, elem: 'label', content: label }
-    ]
+      Label({ mix: { block, elem: 'label' }, content: '...' })
+    ],
+    ...props
   });
 
   return view;

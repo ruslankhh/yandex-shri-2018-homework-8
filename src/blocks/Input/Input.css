@@ -1,0 +1,15 @@
+.Input {
+  padding: 2px 10px;
+  font-size: inherit;
+  line-height: 28px;
+  border: 2px solid #ddd;
+  outline: none;
+
+  &:hover {
+    border-color: #999;
+  }
+
+  &:focus {
+    border-color: #666;
+  }
+}

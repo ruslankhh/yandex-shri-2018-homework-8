@@ -16,7 +16,8 @@ const Nav = (props = {}) => {
     content: {
       tag: 'ul',
       content: items.map(NavItem)
-    }
+    },
+    ...props
   });
 
   return view;

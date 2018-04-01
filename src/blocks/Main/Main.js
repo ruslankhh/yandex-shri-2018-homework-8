@@ -16,7 +16,8 @@ const Main = (props = {}) => {
         mods: { flex: true },
         content: [ViewStub, Log]
       }
-    ]
+    ],
+    ...props
   });
 
   return view;

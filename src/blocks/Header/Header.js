@@ -17,7 +17,8 @@ const Header = (props = {}) => {
         content: 'Архитектура приложения'
       },
       Nav
-    ]
+    ],
+    ...props
   });
 
   return view;
