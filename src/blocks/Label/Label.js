@@ -1,4 +1,4 @@
-import { createElement } from './../../utils/bem';
+import { createElement } from 'bem';
 
 const Label = (props = {}) => {
   const block = 'Label';

@@ -1,4 +1,4 @@
-import { createElement } from './../../utils/bem';
+import { createElement } from 'bem';
 import './NavItem.css';
 
 const NavItem = (props = {}) => {

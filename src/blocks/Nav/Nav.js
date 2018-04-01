@@ -1,4 +1,4 @@
-import { createElement } from './../../utils/bem';
+import { createElement } from 'bem';
 import NavItem from './../../blocks/NavItem/NavItem';
 import './Nav.css';
 

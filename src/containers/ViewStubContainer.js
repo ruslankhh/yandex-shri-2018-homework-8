@@ -1,4 +1,4 @@
-import { createElement } from './../utils/bem';
+import { createElement } from 'bem';
 import sendToServer from './../utils/sendToServer';
 import ViewStub from './../blocks/ViewStub/ViewStub';
 

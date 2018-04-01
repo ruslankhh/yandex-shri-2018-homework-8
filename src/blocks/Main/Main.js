@@ -1,4 +1,4 @@
-import { createElement } from './../../utils/bem';
+import { createElement } from 'bem';
 import ViewStubContainer from './../../containers/ViewStubContainer';
 import Log from './../Log/Log';
 import './Main.css';

@@ -1,4 +1,4 @@
-import { createElement } from './../../utils/bem';
+import { createElement } from 'bem';
 import Header from './../Header/Header';
 import Main from './../Main/Main';
 

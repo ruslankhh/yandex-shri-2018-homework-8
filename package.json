@@ -71,6 +71,7 @@
     "webpack-dev-server": "^3.1.1"
   },
   "dependencies": {
+    "bem": "file:./packages/bem",
     "flux": "file:./packages/flux"
   },
   "repository": {

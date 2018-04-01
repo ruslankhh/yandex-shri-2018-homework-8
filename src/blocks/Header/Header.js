@@ -1,4 +1,4 @@
-import { createElement } from './../../utils/bem';
+import { createElement } from 'bem';
 import Nav from './../../blocks/Nav/Nav';
 import './Header.css';
 

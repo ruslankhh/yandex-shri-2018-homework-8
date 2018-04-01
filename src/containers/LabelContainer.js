@@ -1,4 +1,4 @@
-import { createElement, render } from './../utils/bem';
+import { createElement, render } from 'bem';
 import Label from './../blocks/Label/Label';
 
 import store from './../store';

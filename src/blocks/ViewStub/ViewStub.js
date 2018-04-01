@@ -1,4 +1,4 @@
-import { createElement } from './../../utils/bem';
+import { createElement } from 'bem';
 import Button from './../Button/Button';
 import Input from './../Input/Input';
 import LabelContainer from './../../containers/LabelContainer';
