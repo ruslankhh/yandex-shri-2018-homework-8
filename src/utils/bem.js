@@ -44,6 +44,7 @@ const createClassList = props => {
 
 const createElement = props => {
   const { tag = 'div', attrs, content } = props;
+  const { onChange, onClick, onInput, onKeydown } = props;
   const view = document.createElement(tag);
   const classList = createClassList(props);
 
@@ -61,33 +62,72 @@ const createElement = props => {
     render(content, view);
   }
 
+  if (onChange) {
+    view.onchange = onChange;
+  }
+
+  if (onClick) {
+    view.onclick = onClick;
+  }
+
+  if (onInput) {
+    view.oninput = onInput;
+  }
+
+  if (onKeydown) {
+    view.onkeydown = onKeydown;
+  }
+
   return view;
 };
 
-const render = (value, root) => {
+const getViewList = value => {
+  let viewList = [];
+
   if (value instanceof Array) {
-    root.append(
-      ...value.map(obj => {
-        if (obj instanceof Function) {
-          return obj();
-        } else if (obj instanceof Element) {
-          return obj;
-        } else if (obj instanceof Object) {
-          return createElement(obj);
-        } else {
-          return obj;
-        }
-      })
-    );
+    viewList = value.map(obj => {
+      if (obj instanceof Function) {
+        return obj();
+      } else if (obj instanceof Element) {
+        return obj;
+      } else if (obj instanceof Object) {
+        return createElement(obj);
+      } else {
+        return obj;
+      }
+    });
   } else if (value instanceof Function) {
-    root.append(value());
+    viewList = [value()];
   } else if (value instanceof Element) {
-    root.append(value);
+    viewList = [value];
   } else if (value instanceof Object) {
-    root.append(createElement(value));
+    viewList = [createElement(value)];
   } else {
-    root.append(value);
+    viewList = [value];
   }
+
+  return viewList;
+};
+
+const addEventListener = view => {
+  ['onchange', 'onclick', 'oninput', 'onkeydown'].forEach(event => {
+    if (view[event]) {
+      view.addEventListener(event.slice(2), view[event]);
+
+      if (view.children) {
+        Array.from(view.children).forEach(addEventListener);
+      }
+    }
+  });
+};
+
+const render = (value, root) => {
+  const viewList = getViewList(value);
+
+  root.innerHTML = '';
+  root.append(...viewList);
+
+  viewList.forEach(addEventListener);
 };
 
 export default { createElement, render };
