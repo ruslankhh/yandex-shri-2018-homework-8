@@ -8,15 +8,14 @@
 //     sendToServer('mydata');
 // }
 const sendToServer = data => {
-  const response = {
-    data: {
-      message: `Сервер принял данные ${data}.`
-    }
-  };
+  const response = `Сервер принял данные "${data}".`;
 
-  console.log(response);
-
-  return new Promise(resolve => resolve(response));
+  return new Promise(resolve => {
+    setTimeout(() => {
+      console.log(response);
+      resolve(response);
+    }, 100);
+  });
 };
 
 export default sendToServer;
