@@ -10,6 +10,7 @@
 
 # production
 /build
+/dist
 
 # localization
 .tanker/log.json

@@ -1,12 +1,3 @@
-function sendToServer(data) {
-    console.log(data);
-
-    var event = new CustomEvent('dataIsSent', { detail: data });
-
-    document.dispatchEvent(event);
-}
-
-
 // Пример обработки события dataIsSent. Рекомендуется изменить API модуля так,
 // чтобы вызова события через document не было
 
@@ -16,3 +7,11 @@ function sendToServer(data) {
 //     });
 //     sendToServer('mydata');
 // }
+const sendToServer = data => {
+  const event = new CustomEvent('dataIsSent', { detail: data });
+
+  console.log(data);
+  document.dispatchEvent(event);
+};
+
+export default sendToServer;
