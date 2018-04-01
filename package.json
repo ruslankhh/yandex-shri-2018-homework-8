@@ -4,7 +4,7 @@
   "description": "Домашнее задание #8 в ШРИ Яндекса 2018.",
   "main": "index.js",
   "scripts": {
-    "start": "serve dist",
+    "start": "PORT=8080 serve dist",
     "dev": "webpack-dev-server --mode development --open",
     "build": "webpack --mode production",
     "deploy": "gh-pages -d dist",
