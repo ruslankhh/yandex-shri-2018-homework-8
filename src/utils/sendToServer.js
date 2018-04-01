@@ -8,10 +8,15 @@
 //     sendToServer('mydata');
 // }
 const sendToServer = data => {
-  const event = new CustomEvent('dataIsSent', { detail: data });
+  const response = {
+    data: {
+      message: `Сервер принял данные ${data}.`
+    }
+  };
 
-  console.log(data);
-  document.dispatchEvent(event);
+  console.log(response);
+
+  return new Promise(resolve => resolve(response));
 };
 
 export default sendToServer;
