@@ -1,10 +1,15 @@
 import { createElement } from './../../utils/bem';
 import Button from './../Button/Button';
 import Input from './../Input/Input';
-import Label from './../Label/Label';
+import LabelContainer from './../../containers/LabelContainer';
 import './ViewStub.css';
 
 const ViewStub = (props = {}) => {
+  const {
+    onButtonClick: onClick,
+    onInputInput: onInput,
+    onInputKeydown: onKeydown
+  } = props;
   const block = 'ViewStub';
 
   const view = createElement({
@@ -15,12 +20,12 @@ const ViewStub = (props = {}) => {
         block,
         elem: 'inputContainer',
         content: [
-          Input({ mix: { block, elem: 'input' } }),
-          Button({ mix: { block, elem: 'button' }, content: 'Отправить' })
+          Input({ mix: { block, elem: 'input' }, onInput, onKeydown }),
+          Button({ mix: { block, elem: 'button' }, content: 'Отправить', onClick })
         ]
       },
       { block, tag: 'h3', elem: 'title-2', content: 'Ответ сервера' },
-      Label({ mix: { block, elem: 'label' }, content: '...' })
+      LabelContainer({ mix: { block, elem: 'label' } })
     ],
     ...props
   });
