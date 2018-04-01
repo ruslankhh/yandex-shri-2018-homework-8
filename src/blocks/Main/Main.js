@@ -19,8 +19,6 @@ const Main = (props = {}) => {
     ]
   });
 
-  console.log(view);
-
   return view;
 };
 
