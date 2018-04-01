@@ -1,4 +1,4 @@
-.header {
+.Header {
   max-width: 57rem;
   width: 100%;
   margin: 0 auto -0.5em;
@@ -35,16 +35,14 @@
       margin-right: 0;
     }
   }
-}
 
-.nav-item {
-  &__link {
+  &__navLink {
     color: #666;
-  }
 
-  &__link--disabled {
-    pointer-events: none;
-    cursor: default;
-    text-decoration: line-through;
+    &--disabled-true {
+      pointer-events: none;
+      cursor: default;
+      text-decoration: line-through;
+    }
   }
 }

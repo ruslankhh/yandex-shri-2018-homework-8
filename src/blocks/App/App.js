@@ -1,7 +1,14 @@
-import './../../styles/styles.post.css';
+import bem from './../../utils/createBEM';
+import Header from './../Header/Header';
+import Main from './../Main/Main';
 
-const App = () => {
-  console.log("It's work!");
+const App = (props = {}) => {
+  const block = 'App';
+
+  return bem({
+    block,
+    content: [Header(), Main()]
+  });
 };
 
 export default App;
