@@ -1,5 +1,5 @@
-const createElement = ({ block, tag = 'div', elem, mods, mix, attrs, content }) => {
-  const view = document.createElement(tag);
+const createClassList = props => {
+  const { block, elem, mods, mix } = props;
   let classList = [];
   let prefix;
 
@@ -13,14 +13,39 @@ const createElement = ({ block, tag = 'div', elem, mods, mix, attrs, content }) 
 
   if (mods) {
     const classModList = Object.keys(mods).map(mod => `${prefix}--${mod}-${mods[mod]}`);
+
     classList = [...classList, ...classModList];
   }
 
   if (mix) {
-    classList = [...classList, ...[].concat(mix)];
+    let classMixList;
+
+    if (mix instanceof Array && typeof mix[0] !== 'undefined') {
+      if (typeof mix[0] === 'string') {
+        classMixList = mix;
+      } else if (typeof mix[0] === 'object') {
+        classMixList = mix
+          .map(createClassList)
+          .reduce((arr1, arr2) => [...arr1, ...arr2]);
+      }
+    } else if (mix instanceof Object) {
+      classMixList = createClassList(mix);
+    } else if (typeof mix === 'string') {
+      classMixList = [mix];
+    }
+
+    classList = [...classList, ...classMixList];
   }
 
   classList = classList.filter(c => !!c);
+
+  return classList;
+};
+
+const createElement = props => {
+  const { tag = 'div', attrs, content } = props;
+  const view = document.createElement(tag);
+  const classList = createClassList(props);
 
   if (classList.length !== 0) {
     view.className = classList.join(' ');
