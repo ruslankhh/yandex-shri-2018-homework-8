@@ -109,25 +109,11 @@ const getViewList = value => {
   return viewList;
 };
 
-const addEventListener = view => {
-  ['onchange', 'onclick', 'oninput', 'onkeydown'].forEach(event => {
-    if (view[event]) {
-      view.addEventListener(event.slice(2), view[event]);
-
-      if (view.children) {
-        Array.from(view.children).forEach(addEventListener);
-      }
-    }
-  });
-};
-
 const render = (value, root) => {
   const viewList = getViewList(value);
 
   root.innerHTML = '';
   root.append(...viewList);
-
-  viewList.forEach(addEventListener);
 };
 
 export default { createElement, render };
