@@ -14,7 +14,7 @@ const Main = (props = {}) => {
         block,
         elem: 'container',
         mods: { flex: true },
-        content: [ViewStub(), Log()]
+        content: [ViewStub, Log]
       }
     ]
   });

@@ -7,7 +7,7 @@ const App = (props = {}) => {
 
   return bem({
     block,
-    content: [Header(), Main()]
+    content: [Header, Main]
   });
 };
 

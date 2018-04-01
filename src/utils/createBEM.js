@@ -35,11 +35,15 @@ const createBEM = ({ block, tag = 'div', elem, mods, mix, attrs, content }) => {
         ...content.map(obj => {
           if (obj instanceof Element) {
             return obj;
-          } else {
+          } else if (obj instanceof Function) {
+            return obj();
+          } else if (obj instanceof Object) {
             return bem(obj);
           }
         })
       );
+    } else if (content instanceof Function) {
+      view.append(content());
     } else if (content instanceof Object) {
       view.append(bem(content));
     } else {
