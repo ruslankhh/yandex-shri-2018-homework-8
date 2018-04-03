@@ -2,6 +2,9 @@ import { createElement, render } from 'bem';
 import Label from './../blocks/Label/Label';
 
 import store from './../store';
+import logger from './../logger';
+
+const logRender = logger.decorate('VIEW', render);
 
 const LabelContainer = (props = {}) => {
   const block = 'LabelContainer';
@@ -13,7 +16,7 @@ const LabelContainer = (props = {}) => {
 
   const labelHandler = (oldState, state) => {
     if (oldState.label !== state.label) {
-      render(Label({ content: state.label, ...props }), view);
+      logRender(Label({ content: state.label, ...props }), view);
     }
   };
 

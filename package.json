@@ -72,7 +72,8 @@
   },
   "dependencies": {
     "bem": "file:./packages/bem",
-    "flux": "file:./packages/flux"
+    "flux": "file:./packages/flux",
+    "logger": "file:./packages/logger"
   },
   "repository": {
     "type": "git",
