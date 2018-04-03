@@ -4,7 +4,7 @@ import Label from './../blocks/Label/Label';
 import store from './../store';
 import logger from './../logger';
 
-const logRender = logger.decorate('VIEW', render);
+const logRender = logger.listen('PRESENTER:', render, 'input');
 
 const LabelContainer = (props = {}) => {
   const block = 'LabelContainer';
@@ -16,11 +16,14 @@ const LabelContainer = (props = {}) => {
 
   const labelHandler = (oldState, state) => {
     if (oldState.label !== state.label) {
-      logRender(Label({ content: state.label, ...props }), view);
+      view.innerHTML = '';
+      view.append(...logRender(Label({ content: state.label, ...props })));
     }
   };
 
-  store.subscribe(labelHandler);
+  const logLabelHandler = logger.listen('STORE:', labelHandler, 'input');
+
+  store.subscribe(logLabelHandler);
 
   return view;
 };

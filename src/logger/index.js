@@ -2,6 +2,6 @@ import { createLogger } from 'logger';
 
 const logger = createLogger();
 
-logger.subscribe(message => console.log(message));
+logger.subscribe(console.log);
 
 export default logger;

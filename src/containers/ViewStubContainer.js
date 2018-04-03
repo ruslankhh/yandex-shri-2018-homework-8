@@ -6,9 +6,10 @@ import store from './../store';
 import logger from './../logger';
 import { setInputAction, setLabelAction } from './../actions';
 
-const logSetInputAction = logger.decorate('ACTION', setInputAction);
-const logSetLabelAction = logger.decorate('ACTION', setLabelAction);
-const logDispatch = logger.decorate('DISPATCHER', store.dispatch);
+const logSetInputAction = logger.listen('VIEW:', setInputAction, 'input');
+const logSetLabelAction = logger.listen('VIEW:', setLabelAction, 'input');
+const logDispatch = logger.listen('ACTION:', store.dispatch, 'input');
+const logSendToServer = logger.listenAsync('SERVER', sendToServer);
 
 const ViewStubContainer = (props = {}) => {
   const block = 'ViewStubContainer';
@@ -16,7 +17,7 @@ const ViewStubContainer = (props = {}) => {
   // eslint-disable-next-line
   const onInputInput = function (event) {
     // store.dispatch(setInputAction(this.value));
-    logDispatch(logSetInputAction(this.value));
+    logDispatch(logSetInputAction(event.target.value));
   };
 
   // eslint-disable-next-line
@@ -25,7 +26,7 @@ const ViewStubContainer = (props = {}) => {
 
     const state = store.getState();
 
-    sendToServer(state.input).then(data => {
+    logSendToServer(state.input).then(({ data }) => {
       const label = `Сервер принял данные "${data}"`;
       // store.dispatch(setLabelAction(label));
       logDispatch(logSetLabelAction(label));
@@ -35,13 +36,23 @@ const ViewStubContainer = (props = {}) => {
   // eslint-disable-next-line
   const onInputKeydown = function (event) {
     if (event.keyCode === 13) {
-      onButtonClick(event);
+      return onButtonClick(event);
     }
   };
 
+  const logOnInputInput = logger.listen('USER:', onInputInput, 'input');
+  const logOnButtonClick = logger.listen('USER:', onButtonClick, 'input');
+  const logOnInputKeydown = logger.listen('USER:', onInputKeydown, 'input');
+
   const view = createElement({
     block,
-    content: [ViewStub({ onButtonClick, onInputInput, onInputKeydown })]
+    content: [
+      ViewStub({
+        onButtonClick: logOnButtonClick,
+        onInputInput: logOnInputInput,
+        onInputKeydown: logOnInputKeydown
+      })
+    ]
   });
 
   return view;
