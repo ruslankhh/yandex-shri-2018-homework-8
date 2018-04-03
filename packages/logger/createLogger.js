@@ -1,25 +1,32 @@
 const createLogger = () => {
   let listeners = [];
 
-  const decorate = (message, func) => (...input) => {
-    // console.log('[INPUT]', input);
-
-    const inputString = input.map(arg => JSON.stringify(arg)).join(', ');
-    const message1 = `${message} input: ${inputString}`;
-
-    listeners.forEach(listener => listener(message1));
+  const listen = (message, func, type = 'output') => (...input) => {
+    if (type === 'input') {
+      listeners.forEach(listener => listener(message, input));
+    }
 
     const output = func(...input);
-    // console.log('[OUTPUT]', output);
 
-    if (typeof output !== 'undefined') {
-      const outputString = JSON.stringify(output);
-      const message2 = `${message} output: ${outputString}`;
+    if (type === 'output') {
+      listeners.forEach(listener => listener(message, output));
+    }
 
-      listeners.forEach(listener => listener(message2));
+    return output;
+  };
+
+  const listenAsync = (message, func, type = 'output') => (...input) => {
+    if (type === 'input') {
+      listeners.forEach(listener => listener(message, input));
+    }
+
+    return func(...input).then(output => {
+      if (type === 'output') {
+        listeners.forEach(listener => listener(message, output));
+      }
 
       return output;
-    }
+    });
   };
 
   const subscribe = listener => {
@@ -27,7 +34,8 @@ const createLogger = () => {
   };
 
   return {
-    decorate,
+    listen,
+    listenAsync,
     subscribe
   };
 };
