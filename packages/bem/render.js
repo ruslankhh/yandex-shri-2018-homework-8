@@ -4,8 +4,12 @@ const render = (value, root) => {
   if (typeof value !== 'undefined') {
     const viewList = createViewList(value);
 
-    root.innerHTML = '';
-    root.append(...viewList);
+    if (typeof root !== 'undefined') {
+      root.innerHTML = '';
+      root.append(...viewList);
+    }
+
+    return viewList;
   }
 };
 
