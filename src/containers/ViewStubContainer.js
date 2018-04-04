@@ -6,10 +6,10 @@ import store from './../store';
 import logger from './../logger';
 import { setInputAction, setLabelAction } from './../actions';
 
-const loggedSetInputAction = logger.listen('VIEW:', setInputAction, 'input');
-const loggedSetLabelAction = logger.listen('VIEW:', setLabelAction, 'input');
-const loggedDispatch = logger.listen('ACTION:', store.dispatch, 'input');
-const loggedSendToServer = logger.listenAsync('SERVER', sendToServer);
+const logSetInputAction = logger.listen('VIEW:', setInputAction, 'input');
+const logSetLabelAction = logger.listen('VIEW:', setLabelAction, 'input');
+const logDispatch = logger.listen('ACTION:', store.dispatch, 'input');
+const logSendToServer = logger.listenAsync('SERVER', sendToServer);
 
 const ViewStubContainer = (props = {}) => {
   const block = 'ViewStubContainer';
@@ -17,7 +17,7 @@ const ViewStubContainer = (props = {}) => {
   // eslint-disable-next-line
   const onInputInput = function (event) {
     // store.dispatch(setInputAction(this.value));
-    loggedDispatch(loggedSetInputAction(event.target.value));
+    logDispatch(logSetInputAction(event.target.value));
   };
 
   // eslint-disable-next-line
@@ -26,9 +26,9 @@ const ViewStubContainer = (props = {}) => {
 
     const state = store.getState();
 
-    loggedSendToServer(state.input).then(({ data }) => {
+    logSendToServer(state.input).then(({ data }) => {
       // store.dispatch(setLabelAction(label));
-      loggedDispatch(loggedSetLabelAction(data));
+      logDispatch(logSetLabelAction(data));
     });
   };
 
@@ -39,17 +39,17 @@ const ViewStubContainer = (props = {}) => {
     }
   };
 
-  const loggedOnInputInput = logger.listen('USER:', onInputInput, 'input');
-  const loggedOnButtonClick = logger.listen('USER:', onButtonClick, 'input');
-  const loggedOnInputKeydown = logger.listen('USER:', onInputKeydown, 'input');
+  const logOnInputInput = logger.listen('USER:', onInputInput, 'input');
+  const logOnButtonClick = logger.listen('USER:', onButtonClick, 'input');
+  const logOnInputKeydown = logger.listen('USER:', onInputKeydown, 'input');
 
   const view = createElement({
     block,
     content: [
       ViewStub({
-        onButtonClick: loggedOnButtonClick,
-        onInputInput: loggedOnInputInput,
-        onInputKeydown: loggedOnInputKeydown
+        onButtonClick: logOnButtonClick,
+        onInputInput: logOnInputInput,
+        onInputKeydown: logOnInputKeydown
       })
     ]
   });
