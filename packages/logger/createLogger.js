@@ -33,10 +33,15 @@ const createLogger = () => {
     listeners = [...listeners, listener];
   };
 
+  const unsubscribe = listener => {
+    listeners = listeners.filter(oldListener => oldListener !== listener);
+  };
+
   return {
     listen,
     listenAsync,
-    subscribe
+    subscribe,
+    unsubscribe
   };
 };
 
