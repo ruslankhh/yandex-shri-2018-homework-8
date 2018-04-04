@@ -1,23 +1,20 @@
 import { createElement } from 'bem';
-import sendToServer from './../utils/sendToServer';
 import ViewStub from './../components/ViewStub/ViewStub';
 
 import store from './../store';
 import logger from './../logger';
-import { setInputAction, setLabelAction } from './../actions';
+import { requestData, setInputAction } from './../actions';
 
-const logSetInputAction = logger.listen('VIEW:', setInputAction, 'input');
-const logSetLabelAction = logger.listen('VIEW:', setLabelAction, 'input');
+const loggedSetInputAction = logger.listen('VIEW:', setInputAction, 'input');
+const loggedRequestData = logger.listen('VIEW:', requestData, 'input');
 const logDispatch = logger.listen('ACTION:', store.dispatch, 'input');
-const logSendToServer = logger.listenAsync('SERVER', sendToServer);
 
 const ViewStubContainer = (props = {}) => {
   const block = 'ViewStubContainer';
 
   // eslint-disable-next-line
   const onInputInput = function (event) {
-    // store.dispatch(setInputAction(this.value));
-    logDispatch(logSetInputAction(event.target.value));
+    logDispatch(loggedSetInputAction(event.target.value));
   };
 
   // eslint-disable-next-line
@@ -26,10 +23,7 @@ const ViewStubContainer = (props = {}) => {
 
     const state = store.getState();
 
-    logSendToServer(state.input).then(({ data }) => {
-      // store.dispatch(setLabelAction(label));
-      logDispatch(logSetLabelAction(data));
-    });
+    logDispatch(loggedRequestData(state.input));
   };
 
   // eslint-disable-next-line

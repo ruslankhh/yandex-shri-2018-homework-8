@@ -1,13 +1,11 @@
-import { createStore, composeReducers } from 'flux';
-import inputReducer from './../reducers/inputReducer';
-import labelReducer from './../reducers/labelReducer';
+import { createStore } from 'flux';
+import reducer from './../reducers';
 import logger from './../logger';
 
-const reducer = composeReducers(inputReducer, labelReducer);
-const logReducer = logger.listen('DISPATHER:', reducer);
+const loggedReducer = logger.listen('DISPATHER:', reducer);
 
 const store = createStore();
 
-store.use(logReducer);
+store.use(loggedReducer);
 
 export default store;
