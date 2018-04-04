@@ -19,9 +19,15 @@ const LabelContainer = (props = {}) => {
     }
   };
 
-  const logLabelHandler = logger.listen('STORE:', labelHandler, 'input');
+  const loggedLabelHandler = (oldState, state) => {
+    if (oldState.label !== state.label) {
+      logger.listen('STORE:', labelHandler, 'input')(oldState, state);
+    } else {
+      labelHandler(oldState, state);
+    }
+  };
 
-  store.subscribe(logLabelHandler);
+  store.subscribe(loggedLabelHandler);
 
   return view;
 };

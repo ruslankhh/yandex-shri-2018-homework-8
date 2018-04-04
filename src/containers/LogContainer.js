@@ -1,12 +1,12 @@
 import { createElement, render } from 'bem';
-import toLog from './../utils/toLog';
 import Log from './../blocks/Log/Log';
 
+import store from './../store';
 import logger from './../logger';
+import { addLogAction } from './../actions';
 
 const LogContainer = (props = {}) => {
   const block = 'LogContainer';
-  let log = [];
 
   const view = createElement({
     block,
@@ -14,15 +14,19 @@ const LogContainer = (props = {}) => {
   });
 
   logger.subscribe((message, data) => {
-    const logMessage = `${message} ${toLog(data)}`;
-
-    log = [...log, logMessage];
-
-    const output = log.join('\n');
-
-    view.innerHTML = '';
-    view.append(...render(Log({ output, ...props })));
+    store.dispatch(addLogAction({ message, data }));
   });
+
+  const logHandler = (oldState, state) => {
+    if (oldState.log !== state.log) {
+      const output = state.log.join('\n');
+
+      view.innerHTML = '';
+      view.append(...render(Log({ output, ...props })));
+    }
+  };
+
+  store.subscribe(logHandler);
 
   return view;
 };
