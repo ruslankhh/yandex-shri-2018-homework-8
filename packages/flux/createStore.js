@@ -4,6 +4,7 @@ const createStore = () => {
   let state = {};
   let reducers = [];
   let listeners = [];
+  let queue = Promise.resolve();
 
   const use = reducer => {
     reducers = [...reducers, reducer];
@@ -22,13 +23,19 @@ const createStore = () => {
   };
 
   const dispatch = action => {
-    const oldState = mergeDeep({}, state);
+    queue = queue.then(
+      () =>
+        new Promise(resolve => {
+          const oldState = mergeDeep({}, state);
 
-    state = reducers.reduce((state, reducer) => reducer(state, action), state);
+          state = reducers.reduce((state, reducer) => reducer(state, action), state);
 
-    const newState = mergeDeep({}, state);
+          const newState = mergeDeep({}, state);
 
-    listeners.forEach(listener => listener(oldState, newState));
+          listeners.forEach(listener => listener(oldState, newState));
+          resolve();
+        })
+    );
   };
 
   return {
