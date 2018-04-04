@@ -27,9 +27,8 @@ const ViewStubContainer = (props = {}) => {
     const state = store.getState();
 
     logSendToServer(state.input).then(({ data }) => {
-      const label = `Сервер принял данные "${data}"`;
       // store.dispatch(setLabelAction(label));
-      logDispatch(logSetLabelAction(label));
+      logDispatch(logSetLabelAction(data));
     });
   };
 

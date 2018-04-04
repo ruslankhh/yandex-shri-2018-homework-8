@@ -1,7 +1,7 @@
 const labelReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SET_LABEL':
-      return { ...state, label: action.label };
+      return { ...state, label: `Сервер принял данные "${action.label}"` };
     default:
       return state;
   }
