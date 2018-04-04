@@ -1,6 +1,6 @@
 import { createElement } from 'bem';
 import sendToServer from './../utils/sendToServer';
-import ViewStub from './../blocks/ViewStub/ViewStub';
+import ViewStub from './../components/ViewStub/ViewStub';
 
 import store from './../store';
 import logger from './../logger';

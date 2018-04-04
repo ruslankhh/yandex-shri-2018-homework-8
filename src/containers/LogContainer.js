@@ -1,6 +1,6 @@
 import { createElement, render } from 'bem';
 import toLog from './../utils/toLog';
-import Log from './../blocks/Log/Log';
+import Log from './../components/Log/Log';
 
 import logger from './../logger';
 

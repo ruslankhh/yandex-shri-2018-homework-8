@@ -1,5 +1,5 @@
 import { createElement, render } from 'bem';
-import Label from './../blocks/Label/Label';
+import Label from './../components/Label/Label';
 
 import store from './../store';
 import logger from './../logger';

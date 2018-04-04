@@ -1,5 +1,5 @@
 import { render } from 'bem';
-import App from './blocks/App/App';
+import App from './containers/App';
 
 import './styles/styles.post.css';
 

@@ -1,5 +1,5 @@
 import { createElement } from 'bem';
-import Nav from './../../blocks/Nav/Nav';
+import Nav from './../Nav/Nav';
 import './Header.css';
 
 const Header = (props = {}) => {

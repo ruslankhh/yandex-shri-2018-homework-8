@@ -1,5 +1,5 @@
 import { createElement } from 'bem';
-import NavItem from './../../blocks/NavItem/NavItem';
+import NavItem from './../NavItem/NavItem';
 import './Nav.css';
 
 const Nav = (props = {}) => {
